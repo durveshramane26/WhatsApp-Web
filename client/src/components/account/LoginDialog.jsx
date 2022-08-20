@@ -41,7 +41,7 @@ const dialogStyle = {
     maxWidth: '100%',
     maxHeight: '100%',
     boxShadow: 'none',
-    overflow: 'none'
+    overflow: 'hidden'
 }
 
 const LoginDialog = () => {
