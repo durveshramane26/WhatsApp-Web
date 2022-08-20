@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dialog, Typography, List, ListItem, Box, styled } from '@mui/material';
 import { qrCodeImage } from '../../constants/data';
+import { GoogleLogin } from '@react-oauth/google';
 
 const Component = styled(Box)`
   display: flex;
@@ -45,6 +46,19 @@ const dialogStyle = {
 }
 
 const LoginDialog = () => {
+
+  const onLoginSuccess = (res) => {
+    console.log(res);
+
+  }
+
+  const onLoginError = (res) => {
+    console.log('Loging Failed', res);
+
+  }
+
+
+
   return (
     <Dialog
         open={true}
@@ -59,8 +73,14 @@ const LoginDialog = () => {
                     <ListItem>3. Point your phone to this screen to capture the code</ListItem>
                 </StyledList>
             </Container>
-            <Box>
+            <Box style = {{ position: 'relative'}}>
                 <QRCode src={qrCodeImage} alt="qr code" />
+                <Box style={{ position: 'absolute', top: '50%',transform: 'translateX(25%)' }}>
+                    <GoogleLogin 
+                        onSuccess={onLoginSuccess}
+                        onError={onLoginError}
+                    />
+                </Box>
             </Box>
         </Component>
     </Dialog>
