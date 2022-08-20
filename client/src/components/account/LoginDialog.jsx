@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dialog } from '@mui/material';
+import { Dialog, Typography, List, ListItem, Box, styled } from '@mui/material';
 
 const dialogStyle = {
     height: '96%',
@@ -17,7 +17,16 @@ const LoginDialog = () => {
         open={true}
         PaperProps= {{ sx: dialogStyle }}
     >
-        helo
+        <Box>
+            <Box>
+                <Typography>To use Whatapp on your computer:</Typography>
+                <List>
+                    <ListItem>1. Open WhatsApp on your phone</ListItem>
+                    <ListItem>2. Tap menu Setting and Select whats app web</ListItem>
+                    <ListItem>3. Point your phone to this screen to capture the code</ListItem>
+                </List>
+            </Box>
+        </Box>
     </Dialog>
 
     )   
