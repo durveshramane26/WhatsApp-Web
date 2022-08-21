@@ -2,6 +2,7 @@ import React from 'react'
 import { Dialog, Typography, List, ListItem, Box, styled } from '@mui/material';
 import { qrCodeImage } from '../../constants/data';
 import { GoogleLogin } from '@react-oauth/google';
+import  jwt_decode  from 'jwt-decode'; 
 
 const Component = styled(Box)`
   display: flex;
@@ -48,8 +49,8 @@ const dialogStyle = {
 const LoginDialog = () => {
 
   const onLoginSuccess = (res) => {
-    console.log(res);
-
+    const decoded = jwt_decode(res.credential);
+    console.log(decoded);
   }
 
   const onLoginError = (res) => {
