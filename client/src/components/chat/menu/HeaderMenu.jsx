@@ -7,7 +7,8 @@ import { Menu, MenuItem, styled } from '@mui/material';
 const MenuOption = styled(MenuItem)`
     font-size: 14px;
     padding: 15px 60px 5px 24px;
-    color: #4A4A4A;`
+    color: #4A4A4A;
+    `
 
 
 const HeaderMenu = () => {
