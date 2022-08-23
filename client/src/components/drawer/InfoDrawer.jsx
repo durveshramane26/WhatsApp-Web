@@ -2,6 +2,7 @@ import React from 'react'
 import { Drawer } from '@mui/material' 
 import { ArrowBack } from '@mui/icons-material'
 import { Typography, Box, styled } from '@mui/material'
+import Profile from './Profile'
 
 const Header = styled(Box)`
     background: #008069;
@@ -19,6 +20,8 @@ const Component = styled(Box)`
     height: 85%;
     `
 
+const Text = styled(Typography)`
+    font-size: 18px;`
 
 
 
@@ -47,10 +50,10 @@ const InfoDrawer = ({ open, setOpen}) => {
         >
             <Header>
                 <ArrowBack onClick={() => setOpen(false)} />
-                <Typography>Profile</Typography>
+                <Text>Profile</Text>
             </Header>
             <Component>
-
+                <Profile />
             </Component>
         </Drawer>
     )
