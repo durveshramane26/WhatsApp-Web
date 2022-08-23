@@ -4,7 +4,7 @@ import { AccountContext } from '../../context/AccountProvider'
 import { Box, styled } from '@mui/material'
 
 const ImageContainer = styled(Box)`
-    dipslay: flex;
+    display: flex;
     justify-content: center;
     `
 
@@ -14,16 +14,16 @@ const Image = styled('img') ({
     borderRadius:'50%',
     padding: '25px 0'
 
-}_)
+})
 
 const Profile = () => {
 
     const { account } = useContext(AccountContext);
   return (
     <>
-        <Box>
-            <img src={account.picture} alt="dp" />
-        </Box>
+        <ImageContainer>
+            <Image src={account.picture} alt="dp" />
+        </ImageContainer>
         <Box></Box>
         <Box></Box>
         <Box></Box>
