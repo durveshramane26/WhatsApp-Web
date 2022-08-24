@@ -11,7 +11,7 @@ const MenuOption = styled(MenuItem)`
     `
 
 
-const HeaderMenu = ( setOpenDrawer ) => {
+const HeaderMenu = ( {setOpenDrawer} ) => {
 
     const [open, setOpen] = useState(null);
 
