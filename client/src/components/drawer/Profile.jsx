@@ -31,6 +31,18 @@ const BoxWrapper = styled(Box)`
     }
     `
 
+
+const DescriptionContainer = styled(Box)`
+    padding: 15px 20px 28px 30px;
+    & > p {
+        font-size: 13px;
+        color: #8696a0;
+    }
+
+`
+
+
+
 const Profile = () => {
 
     const { account } = useContext(AccountContext);
@@ -43,10 +55,13 @@ const Profile = () => {
             <Typography>Your Name</Typography>
             <Typography>{account.name}</Typography>
         </BoxWrapper>
-        <Box>
+        <DescriptionContainer>
             <Typography>This is not your Username or pin This name will be visible to WhatsApp contacts</Typography>
-        </Box>
-        <Box></Box>
+        </DescriptionContainer>
+        <BoxWrapper>
+            <Typography>About</Typography>
+            <Typography>Eat Sleep! Code! Repeat</Typography>
+        </BoxWrapper>
     
     </>
   )
