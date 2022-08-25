@@ -8,4 +8,4 @@ const route = express.Router();
 route.post('/add', addUser )
 
 
-export default route;
+export default route; 
