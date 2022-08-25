@@ -7,7 +7,7 @@ export  const addUser =  async (request, response) => {
         let exist = await User.findOne({ sub: request.body.sub });
 
         if (exist) {
-            response.status(200).json( { msg: 'user already exist' } );
+            response.status(200).json( 'user already exist' );
             return;
         }
 
