@@ -2,6 +2,7 @@ import React from 'react'
 import { Dialog, Box, styled } from '@mui/material';
 import Menu from './menu/Menu';
 import EmptyChat from './chat/EmptyChat';
+import ChatBox from './chat/ChatBox';
 
 const Component = styled(Box)`
    display: flex;
@@ -35,14 +36,15 @@ const ChatDialog = () => {
         open={true}
         PaperProps= {{ sx: dialogStyle }}
         hideBackdrop={true}
-        maxWidth={'md'}
+        maxWidth={'md'} 
     >
         <Component>
             <LeftComponent>
                 <Menu />
             </LeftComponent>
             <RightComponent>
-                <EmptyChat />
+                {/*<EmptyChat /> */}
+                <ChatBox />
             </RightComponent>
         </Component>
     </Dialog>
