@@ -31,11 +31,14 @@ const InputField = styled(InputBase) `
 
     `
 
+const ClipIcon = styled(AttachFile)`
+    transform: rotate(40deg);`
+
 const Footer = () => {
   return (
     <Container>
         <EmojiEmotionsOutlined />
-        <AttachFile />
+        <ClipIcon />
         <Search>
         <InputField 
             placeholder='Type a Message'
