@@ -22,13 +22,22 @@ const Search = styled(Box)`
 
 `
 
+const InputField = styled(InputBase) `
+    width: 100%;
+    padding: 5px;
+    height; 20px;
+    padding-left: 25px;
+    font-size: 14px;
+
+    `
+
 const Footer = () => {
   return (
     <Container>
         <EmojiEmotionsOutlined />
         <AttachFile />
         <Search>
-        <InputBase 
+        <InputField 
             placeholder='Type a Message'
         />
         </Search>
