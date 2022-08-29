@@ -27,3 +27,13 @@ export const newConversation =  async (request, response) => {
 
     }
 }
+
+
+export const getConversation = async (request, response) => {
+    try {
+        let conversation = await Conversation.findOne({ members: {  $all: [receiverId, senderId] }});
+        return response.status(200).json(conversation);
+    }catch(error) {
+        return response.status(500).json(error.message);
+    }
+}
