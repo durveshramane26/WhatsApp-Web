@@ -31,6 +31,8 @@ export const newConversation =  async (request, response) => {
 
 export const getConversation = async (request, response) => {
     try {
+        const senderId = request.body.senderId;
+        const receiverId = request.body.receiverId;
         let conversation = await Conversation.findOne({ members: {  $all: [receiverId, senderId] }});
         return response.status(200).json(conversation);
     }catch(error) {
