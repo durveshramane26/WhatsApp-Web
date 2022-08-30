@@ -24,7 +24,7 @@ const Messages = ({ person }) => {
       let message = {
         senderId: account.email,
         receiverId: person.email,
-        conversationId: 
+        //conversationId: 
       }
     }
 

@@ -4,6 +4,7 @@ import ChatHeader from './ChatHeader'
 import Messages from './Messages'
 import { useContext } from 'react'
 import { AccountContext } from '../../../context/AccountProvider'
+import { getConversation } from '../../../service/api'
  
 
 const ChatBox = () => {
@@ -12,11 +13,12 @@ const ChatBox = () => {
 
   useEffect(() => {
     const getConversationDetails = async () => {
-      let data = await getConversation({ senderId: account.email, reveiverId: person.email })
+      let data = await getConversation({ senderId: account.email, receiverId: person.email })
+      console.log(data);
     }
     getConversationDetails();
 
-  },[]);
+  },[person.email]);
 
   return (
     <Box>

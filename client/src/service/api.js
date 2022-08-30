@@ -33,7 +33,8 @@ export const setConversation  =  async (data) => {
 
 export const getConversation  =  async (data) => {
     try {
-        await axios.post(`${url}/conversation/get`, data);
+        let response = await axios.post(`${url}/conversation/get`, data);
+        return response.data;
 
     }catch(error) {
         console.log("Error while calling setConversation API", error.message);
