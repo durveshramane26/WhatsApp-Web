@@ -34,7 +34,7 @@ const InputField = styled(InputBase) `
 const ClipIcon = styled(AttachFile)`
     transform: rotate(40deg);`
 
-const Footer = ({ sendText, setValue }) => {
+const Footer = ({ sendText, setValue, value }) => {
 
     
   return (
@@ -46,6 +46,7 @@ const Footer = ({ sendText, setValue }) => {
             placeholder='Type a Message'
             onChange={(e) => setValue(e.target.value)} 
             onKeyPress={(e) => sendText(e)  }
+            value={value}
         />
         </Search>
         <Mic />

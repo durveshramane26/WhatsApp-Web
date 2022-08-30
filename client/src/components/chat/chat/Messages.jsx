@@ -50,6 +50,7 @@ const Messages = ({ person, conversation }) => {
       <Footer 
         sendText={sendText}
         setValue={setValue}
+        value={value}
       />
     </Wrapper>
   )
