@@ -1,10 +1,11 @@
 import React from 'react'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 
 import { Box , styled } from '@mui/material'
 import Footer from './Footer'
+import Message from './Message'
 import { AccountContext } from '../../../context/AccountProvider'
-import { newMessage } from '../../../service/api'
+import { getMessages, newMessage } from '../../../service/api'
 
 const Wrapper = styled(Box)`
   background-image: url(${'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'});
@@ -18,8 +19,17 @@ const Component = styled(Box)`
 const Messages = ({ person, conversation }) => {
 
   const [value, setValue] = useState('');
+  const [messages, setMessages] = useState([]);
 
   const { account } = useContext(AccountContext);
+
+  useEffect(() => {
+    const getMessageDetails = async () => {
+      let data = await getMessages(conversation._id);
+      setMessages(data);
+    }
+    conversation._id && getMessageDetails();
+  }, [person._id, conversation._id])
 
   
 
@@ -44,6 +54,12 @@ const Messages = ({ person, conversation }) => {
   return (
     <Wrapper>
       <Component>
+        {
+          messages && messages.map(message => (
+            <Message  message={message}/>
+
+          ))
+        }
         
 
       </Component>
