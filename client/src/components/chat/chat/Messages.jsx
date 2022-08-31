@@ -16,10 +16,15 @@ const Component = styled(Box)`
   height: 77vh;
   overflow-y: scroll;
 `
+
+const Container = styled(Box)`
+  padding: 1px 80px;`
+
 const Messages = ({ person, conversation }) => {
 
   const [value, setValue] = useState('');
   const [messages, setMessages] = useState([]);
+  const [newMessageFlag, setNewMessageFlag] = useState(false);
 
   const { account } = useContext(AccountContext);
 
@@ -29,7 +34,7 @@ const Messages = ({ person, conversation }) => {
       setMessages(data);
     }
     conversation._id && getMessageDetails();
-  }, [person._id, conversation._id])
+  }, [person._id, conversation._id, newMessageFlag])
 
   
 
@@ -47,6 +52,7 @@ const Messages = ({ person, conversation }) => {
       await newMessage(message);
 
       setValue('');
+      setNewMessageFlag(prev => !prev);
     }
 
 
@@ -56,7 +62,9 @@ const Messages = ({ person, conversation }) => {
       <Component>
         {
           messages && messages.map(message => (
-            <Message  message={message}/>
+            <Container>
+              <Message message={message} />
+            </Container>
 
           ))
         }

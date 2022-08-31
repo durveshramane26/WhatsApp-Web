@@ -1,9 +1,11 @@
-import React from 'react'
+import { useContext } from 'react'
 import { Box , Typography, styled } from '@mui/material'
+import { formateDate } from '../../../utils/common-utils'
+import { AccountContext } from '../../../context/AccountProvider'
 
-const Own = styled(Message)`
+const Own = styled(Box)`
     background: #dcf8c6;
-    max-width: 50%;
+    max-width: 60%;
     margin-left: auto;
     padding: 5px;
     width: fit-content;
@@ -12,7 +14,7 @@ const Own = styled(Message)`
     word-break: break-word;`
 
 const Wrapper = styled(Box)`
-    background: #dcf8c6;
+    background: #FFFFFF;
     max-width: 60%;
     padding: 5px;
     width: fit-content;
@@ -20,15 +22,42 @@ const Wrapper = styled(Box)`
     border-radius: 10px;
     word-break: break-word;`
 
+const Text = styled(Typography)`
+    font-size: 14px;
+    padding: 0 25px 0 5px;`
+
+const Time = styled(Typography)`
+    font-size: 10px;
+    color: #919191;
+    margin-top: 6px;
+    word-break: keep-all;
+    margin-top: auto;`
+    
+
 
 
 
 const Message = ({ message }) => {
+
+  const { account } = useContext(AccountContext);
+
+
   return (
-    <Own>
-        <Typography>{message.text}</Typography>
-        <Typography>{message.createdAt}</Typography>
-    </Own>
+    <>
+      {
+        account.email === message.senderId ? 
+          <Own>
+            <Text>{message.text}</Text>
+            <Time>{formateDate(message.createdAt)}</Time>
+          </Own>
+        :
+          <Wrapper>
+            <Text>{message.text}</Text>
+            <Time>{formateDate(message.createdAt)}</Time>
+          </Wrapper>
+        
+      }
+    </>
   )
 }
 
