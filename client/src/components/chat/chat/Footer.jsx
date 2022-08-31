@@ -40,7 +40,14 @@ const Footer = ({ sendText, setValue, value }) => {
   return (
     <Container>
         <EmojiEmotionsOutlined />
-        <ClipIcon />
+        <label htmlFor="fileInput">
+            <ClipIcon />
+        </label>
+        <input
+            type="file"
+            id='fileInput'
+            style={{ display: 'none' }}
+        />
         <Search>
         <InputField 
             placeholder='Type a Message'
