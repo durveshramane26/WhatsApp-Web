@@ -2,6 +2,8 @@ import { useContext } from 'react'
 import { Box , Typography, styled } from '@mui/material'
 import { formateDate } from '../../../utils/common-utils'
 import { AccountContext } from '../../../context/AccountProvider'
+import GetAppIcon  from '@mui/icons-material/GetApp';
+import { iconPDF } from '../../../constants/data'
 
 
 const Own = styled(Box)`
@@ -65,16 +67,24 @@ const Message = ({ message }) => {
 
 const ImageMessage  = ({ message }) => {
   return (
-    <Box>
+    <Box style={{ position: 'relative'}}>
        {
           message?.text?.includes('.pdf') ?
             <Box>
 
             </Box>
           : 
-          <img src={message.text} alt={message.text}  />
-            
+          <img style={{ width: 300, height: '100%', objectFit:'cover' }} src={message.text} alt={message.text}  />  
        }
+       <Time style={{ postion: 'absolute', bottom: 0, right: 0}}>
+          <GetAppIcon 
+            style={{ marginRight: 10, border: '1px solid grey', borderRadius: '50%' }}
+            fontSize='small'
+          
+          />
+          
+          {formateDate(message.createdAt)}</Time>
+
     </Box>
   )
 }
