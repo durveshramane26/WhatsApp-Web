@@ -3,6 +3,7 @@ import { Box , Typography, styled } from '@mui/material'
 import { formateDate } from '../../../utils/common-utils'
 import { AccountContext } from '../../../context/AccountProvider'
 
+
 const Own = styled(Box)`
     background: #dcf8c6;
     max-width: 60%;
@@ -47,8 +48,9 @@ const Message = ({ message }) => {
       {
         account.email === message.senderId ? 
           <Own>
-            <Text>{message.text}</Text>
-            <Time>{formateDate(message.createdAt)}</Time>
+            {
+              message.type === 'file' ?  <ImageMessage message={message} /> : <Textmessage message={ message } />
+            }
           </Own>
         :
           <Wrapper>
@@ -59,6 +61,32 @@ const Message = ({ message }) => {
       }
     </>
   )
+}
+
+const ImageMessage  = ({ message }) => {
+  return (
+    <Box>
+       {
+          message?.text?.includes('.pdf') ?
+            <Box>
+
+            </Box>
+          : 
+          <img src={message.text} alt={message.text}  />
+            
+       }
+    </Box>
+  )
+}
+
+const Textmessage = ({ message }) => {
+  return (
+    <>
+       <Text>{message.text}</Text>
+       <Time>{formateDate(message.createdAt)}</Time>
+    </>
+  )
+
 }
 
 export default Message

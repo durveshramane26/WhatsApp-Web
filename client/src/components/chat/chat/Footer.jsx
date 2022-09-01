@@ -35,7 +35,7 @@ const InputField = styled(InputBase) `
 const ClipIcon = styled(AttachFile)`
     transform: rotate(40deg);`
 
-const Footer = ({ sendText, setValue, value, file, setFile }) => {
+const Footer = ({ sendText, setValue, value, file, setFile , setImage}) => {
 
     useEffect(() => {
         const getImage = async () => {
@@ -45,7 +45,8 @@ const Footer = ({ sendText, setValue, value, file, setFile }) => {
                 data.append('file', file);
 
 
-                await uploadFile(data);
+                let response = await uploadFile(data);
+                setImage(response.data);
 
             }
         }
