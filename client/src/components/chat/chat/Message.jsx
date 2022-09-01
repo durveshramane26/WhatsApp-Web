@@ -72,7 +72,7 @@ const ImageMessage  = ({ message }) => {
           message?.text?.includes('.pdf') ?
             <Box style={{ display: 'flex' }}>
               <img src={iconPDF} alt='pdf' style={{ width: 80}}/>
-              <Typography>{message.text.split('/').pop()}</Typography>
+              <Typography style={{ fontsize: 14}}>{message.text.split('/').pop()}</Typography>
             </Box>
           : 
           <img style={{ width: 300, height: '100%', objectFit:'cover' }} src={message.text} alt={message.text}  />  
