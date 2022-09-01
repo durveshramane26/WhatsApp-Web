@@ -56,8 +56,9 @@ const Message = ({ message }) => {
           </Own>
         :
           <Wrapper>
-            <Text>{message.text}</Text>
-            <Time>{formateDate(message.createdAt)}</Time>
+            {
+              message.type === 'file' ?  <ImageMessage message={message} /> : <Textmessage message={ message } />
+            }
           </Wrapper>
         
       }
