@@ -1,48 +1,60 @@
-import React, { useEffect, useState, useContext } from 'react' 
-import Conversation from './Conversation'
-import { Box, styled, Divider } from '@mui/material'
+import { useState, useEffect, useContext } from 'react';
 
-import { getUsers } from '../../../service/api'
-import { AccountContext } from '../../../context/AccountProvider'
+import { Box, styled, Divider } from '@mui/material';
 
-const Component = styled(Box) `
+import { AccountContext } from '../../../context/AccountProvider';
+
+//components
+import Conversation from './Conversation';
+import { getUsers } from '../../../service/api';
+
+const Component = styled(Box)`
+    overflow: overlay;
     height: 81vh;
-    overflow: overlay;`
+`;
 
 const StyledDivider = styled(Divider)`
     margin: 0 0 0 70px;
     background-color: #e9edef;
-    opacity: 0.5;  `
+    opacity: .6;
+`;
 
 const Conversations = ({ text }) => {
-
     const [users, setUsers] = useState([]);
-
-    const { account } = useContext(AccountContext);
+    
+    const { account, socket, setActiveUsers } = useContext(AccountContext);
 
     useEffect(() => {
         const fetchData = async () => {
-            let response = await getUsers();
-            const filteredData = response.filter(user => user.name.toLowerCase().includes(text.toLowerCase()));
-            setUsers(filteredData);
+            let data = await getUsers();
+            let fiteredData = data.filter(user => user.name.toLowerCase().includes(text.toLowerCase()));
+            setUsers(fiteredData);
         }
         fetchData();
     }, [text]);
+
+    useEffect(() => {
+        socket.current.emit('addUser', account);
+        socket.current.on("getUsers", users => {
+            setActiveUsers(users);
+        })
+    }, [account , socket, setActiveUsers]);
+
     return (
         <Component>
             {
-                users.map(user => (
-                    user.email !== account.email &&
-                    <>
-                         <Conversation user={user} />
-                         <StyledDivider />
-                    </>
-                   
-
+                users && users.map((user, index) => (
+                    user.sub !== account.sub && 
+                        <>
+                            <Conversation user={user} />
+                            {
+                                users.length !== (index + 1)  && <StyledDivider />
+                            }
+                        </>
                 ))
             }
         </Component>
     )
 }
 
-export default Conversations
+export default Conversations;
