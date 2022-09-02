@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
-
-const MessageSchema = new mongoose.Schema( {
+const MessageSchema = new mongoose.Schema({
     conversationId: {
         type: String
     },
@@ -18,9 +17,9 @@ const MessageSchema = new mongoose.Schema( {
         type: String
     }
 },
-{
-    timestamps: true
-});
+{ 
+        timestamps: true
+})
 
 const message = mongoose.model('Message', MessageSchema);
 

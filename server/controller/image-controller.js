@@ -24,7 +24,6 @@ export const uploadImage = (request, response) => {
     response.status(200).json(imageUrl);    
 }
 
-
 export const getImage = async (request, response) => {
     try {   
         const file = await gfs.files.findOne({ filename: request.params.filename });
